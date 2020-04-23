@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.0" replicaid="6525855000577652" version="10.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="1c6" sequence="1" unid="98C2C3FF6B2BF476652585500058851A">
+<created><datetime>20200420T213652,42+0530</datetime></created>
+<modified><datetime>20200420T213654,15+0530</datetime></modified>
+<revised><datetime>20200420T213654,14+0530</datetime></revised>
+<lastaccessed><datetime>20200420T213654,14+0530</datetime></lastaccessed>
+<addedtofile><datetime>20200420T213654,14+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Ajit Vijay Hogade/O=dts</name></updatedby>
+<wassignedby><name>CN=Ajit Vijay Hogade/O=dts</name></wassignedby>
+<item name="$TITLE"><text>loading.gif</text></item>
+<item name="$Flags"><text>34CiQP</text></item>
+<item name="$FlagsExt"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+
+
+
+
+
+<item name="$MimeType" sign="true"><text>image/gif</text></item>
+<item name="$FileModDT" sign="true"><datetime>20200417T194057,63+0530</datetime></item>
+<item name="$ImageNames" sign="true"><text>loading.gif</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item></note>

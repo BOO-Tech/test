@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+<!-- Sidebar/menu -->
+<nav class='w3-sidebar w3-collapse w3-theme-l5' style='z-index:3;width:300px;' id='mySidebar'><br />
+  <div class='w3-container w3-row'>
+    <div class='w3-col s4'>
+   </div>
+    <div class='w3-col s8 w3-bar w3-text-theme'>
+      <h4><b><i class='fa fa-html5 fa-fw'></i>HTML-Exporter</b></h4>
+    
+    </div>
+  </div>
+  <hr />
+  <div class='w3-container'>
+    <strong><i class='fa fa-bars fa-fw'></i><i> MENU</i></strong>
+  </div><hr />
+  <div class='w3-bar-block'>
+
+  <a href='#' class='w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black' onclick='w3_close()' title='close menu'><i class='fa fa-remove fa-fw'></i>  Close Menu</a>
+  <xp:link escape="true" text=" New Export" id="link1"
+  	value="home.xsp">
+  	<xp:this.styleClass><![CDATA[#{javascript:var param1 = context.getUrlParameter("page");
+if(!param1)
+return "w3-bar-item w3-button w3-padding w3-hover-theme w3-theme-l1 w3-round"
+else
+return "w3-bar-item w3-button w3-padding"
+}]]></xp:this.styleClass>
+  	<i class='fa fa-upload fa-fw'></i>
+  </xp:link>
+  <xp:link escape="true" text=" Export History" id="link2"
+     	value="home.xsp?page=export_history">
+     	<xp:this.styleClass><![CDATA[#{javascript:var param1 = context.getUrlParameter("page");
+if(param1.equals("export_history"))
+return "w3-bar-item w3-button w3-padding  w3-theme-l1 w3-round"
+else
+return "w3-bar-item w3-button w3-padding"
+
+}]]></xp:this.styleClass>
+     	<i class='fa fa-history fa-fw'></i>
+     </xp:link>
+
+
+  </div>
+</nav>
+</xp:view>

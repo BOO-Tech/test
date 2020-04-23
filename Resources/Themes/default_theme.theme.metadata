@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.0" replicaid="6525855000577652" version="10.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="1d2" sequence="4" unid="3674AA3DAB4960F965258550005898F9">
+<created><datetime>20200420T213743,29+0530</datetime></created>
+<modified><datetime>20200420T235259,77+0530</datetime></modified>
+<revised><datetime>20200420T235259,76+0530</datetime></revised>
+<lastaccessed><datetime>20200420T235259,76+0530</datetime></lastaccessed>
+<addedtofile><datetime>20200420T213744,38+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Ajit Vijay Hogade/O=dts</name></updatedby>
+<wassignedby><name>CN=Ajit Vijay Hogade/O=dts</name></wassignedby>
+<item name="$TITLE"><text>default_theme.theme</text></item>
+<item name="$Flags"><text>34567Cg~`</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>default_theme.theme</text></item>
+<item name="$CSSFiles"><textlist><text>w3.css</text><text>https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css</text></textlist></item></note>

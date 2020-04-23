@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<note class='view' xmlns='http://www.lotus.com/dxl' version='10.0' maintenanceversion='1.0'
+ replicaid='6525855000577652'>
+<noteinfo noteid='162' unid='EB188FE1E4B2B27665258550005825A0' sequence='1'>
+<created><datetime>20200420T213248,00+0530</datetime></created>
+<modified><datetime>20200420T213304,32+0530</datetime></modified>
+<revised><datetime>20200420T213304,29+0530</datetime></revised>
+<lastaccessed><datetime>20200420T213304,31+0530</datetime></lastaccessed>
+<addedtofile><datetime>20200420T213304,31+0530</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Ajit Vijay Hogade/O=dts</name></updatedby>
+<wassignedby><name>CN=Ajit Vijay Hogade/O=dts</name></wassignedby>
+<item name='$FormulaClass' sign='true'><text>1</text></item>
+<item name='$TITLE' sign='true'><text>Exported_Dbs</text></item>
+<item name='$Index' sign='true'><text/></item>
+<item name='$Formula' summary='true' sign='true'><formula compiled='true'>
+YAAFADAAKwAEAAcACwAJAAQAZGJfbmFtZWV4cG9ydF9wYXRoJENvbmZsaWN0JFJFRgAEAAQAAAAg
+AAUABABmb3JtAQAMAEV4cG9ydGVkX0RCcwoCAwAHAAoABAAJTDFT
+</formula></item>
+<item name='$Collation' summary='true'>
+<rawitemdata type='2'>
+BgAAAABE
+</rawitemdata></item>
+<item name='$ViewFormat' summary='true' sign='true'>
+<rawitemdata type='5'>
+AQACAAIACAAAAFZDAAAHAA0AAAAAAFAAAQAACgAAAAAAAAAAAAICAAAAVkMAAAsADQAAAAAAUAAB
+AAAKAAAAAAAAAAAAAgIAAABkYl9uYW1lRGF0YWJhc2UgTmFtZWV4cG9ydF9wYXRoRXhwb3J0ZWQg
+UGF0aCYAAQAAAAEBAAkBAAAKAQEOCgAAAQCtKwEAAQABAAAAAAAAAAAAV0MBAQAJAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAFdDAQEACQAAAAAAAAAAAAAAAAAAAAAAAAQA
+AAAAAP//AAAAAAAAAAAAAAAAAABCAAAAAAABAP///wAFAP///wABAAAAAAAAAAAAAAAAAAEA////
+AAEA////AAAAAQAAAAAAAQAAAAAAAQAAAAAAAAAIAAAAAAABAA==
+</rawitemdata></item>
+<item name='$Comment' sign='true'><text/></item>
+<item name='$Flags'><text>PY</text></item>
+<item name='$DesignerVersion'><text>8.5.3</text></item></note>
+

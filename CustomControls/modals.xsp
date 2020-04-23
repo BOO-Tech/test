@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+<div id="view_list" class="w3-modal w3-animate-opacity  w3-round">
+    <div class="w3-modal-content w3-card-4 w3-round">
+        <div class="w3-container">
+  <h2>Database Views</h2>
+  <p>Please select the views do you want to export/archive to html</p>
+
+ 
+
+<ul class="w3-ul w3-margin-bottom w3-small">
+			<xp:repeat id="view_list_repeat" rows="30" first="0" var="views_list"
+				indexVar="a">
+
+				<xp:this.value><![CDATA[#{javascript:var server = getComponent("server_name").getValue();
+var db_name = getComponent("db_name").getValue();
+var v_list:java.util.Vector = java.util.Vector();
+if(server != "" && db_name != ""){
+  var db:NotesDatabase = session.getDatabase(server,db_name);
+    if(db.isOpen()){
+     v_list = db.getViews();
+       return v_list;
+    }else{
+    return v_list.add("Invalid-Database-Info");
+    }
+}else{
+   return v_list.add("isEmptyDBorSERVER");
+}}]]></xp:this.value>
+				<li>
+						<xp:checkBox id="checkBox2"
+							styleClass="w3-check w3-margin-right"
+							value="">
+							<xp:this.text><![CDATA[#{javascript:return views_list}]]></xp:this.text>
+
+							<xp:eventHandler event="onclick"
+								submit="true" refreshMode="partial" refreshId="full_export_path">
+								<xp:this.action><![CDATA[#{javascript:
+var v:NotesView = views_list;
+var arr:java.util.Vector = new java.util.Vector();
+arr = viewScope.get("myList");
+if(arr != null ){
+  if(arr.contains(v.getName())){
+ //     view.postScript("alert('Remove "+v.getName()+"')") 
+     arr.remove(v.getName());
+  }else{
+ // view.postScript("alert('Adding "+v.getName()+"')")  
+     arr.add(v.getName());
+  }
+}else{
+//   view.postScript("alert('Adding "+v.getName()+"')")
+}
+}]]></xp:this.action>
+							</xp:eventHandler></xp:checkBox>
+					
+				</li>
+			</xp:repeat>
+			</ul>
+
+<xp:label id="label1">
+      
+    </xp:label>
+     
+  </div>
+      <footer class="w3-container" style="margin-top:30px;margin-bottom:30px">
+
+        <div class="w3-bar w3-margin-bottom">
+        
+       
+          	
+          <xp:button value="Close" id="button2" styleClass="w3-button w3-red w3-round  w3-right w3-margin-left"><i class="fa fa-close fa-fw"></i>
+          	<xp:eventHandler event="onclick" submit="false">
+          		<xp:this.script><![CDATA[
+document.getElementById('view_list').style.display='none']]></xp:this.script>
+          	</xp:eventHandler></xp:button>
+          	  <xp:button value="Start Export" id="button3" styleClass="w3-button w3-green w3-round  w3-right w3-margin-left">
+          	<xp:eventHandler event="onclick" submit="true"
+          		refreshMode="partial" refreshId="modal_body"
+          		onStart="document.getElementById('export_progress').style.display='block';document.getElementById('view_list').style.display='none'">
+          		<xp:this.action><![CDATA[#{javascript:var v_arr1:java.util.Vector = new java.util.Vector();
+v_arr1 = viewScope.get("myList");
+var server_name = getComponent("server_name").getValue();
+var db_name = getComponent("db_name").getValue();
+var export_path = getComponent("export_path").getValue();
+
+var doc:NotesDocument = database.createDocument();
+doc.replaceItemValue("server_name",server_name);
+doc.replaceItemValue("db_name",db_name);
+doc.replaceItemValue("export_path",export_path);
+doc.replaceItemValue("views",v_arr1);
+doc.replaceItemValue("Form","Exported_DBs");
+
+doc.save(true);
+/*
+var full_export_path = getComponent("full_export_path").getValue();
+full_export_path = full_export_path+"/"+v_arr1.get(0).toString().replace(" ","")+".html"+
+getComponent("full_export_path").setValue(full_export_path);
+getComponent("full_export_path").
+*/
+startExport(doc);}]]></xp:this.action>
+          		<xp:this.onComplete><![CDATA[var exported_db = document.getElementById('#{id:full_export_path}').innerHTML;
+console.log(exported_db);
+//window.open(exported_db);
+$("#exported_db_link").attr("href", exported_db);
+$("#exported_link").html(exported_db);
+$("#exported_link_input").val(exported_db)]]></xp:this.onComplete>
+          	</xp:eventHandler>
+          	<i class="fa fa-play-circle fa-fw"></i></xp:button>
+          <xp:button value="Start Export" id="button1"
+          	styleClass="w3-button w3-theme w3-round w3-right"
+          	rendered="false">
+          	`
+          	<i class="fa fa-play-circle fa-fw"></i>
+          	<xp:eventHandler event="onclick" submit="true"
+          		refreshMode="partial">
+          		<xp:this.action><![CDATA[#{javascript:var v_arr1:java.util.Vector = new java.util.Vector();
+v_arr1 = viewScope.get("myList");
+var server_name = getComponent("server_name").getValue();
+var db_name = getComponent("db_name").getValue();
+var export_path = getComponent("export_path").getValue();
+
+var doc:NotesDocument = database.createDocument();
+doc.replaceItemValue("server_name",server_name);
+doc.replaceItemValue("db_name",db_name);
+doc.replaceItemValue("export_path",export_path);
+doc.replaceItemValue("views",v_arr1);
+doc.replaceItemValue("Form","Exported_DBs");
+
+doc.save(true);
+   	
+var agentName:String = "htmlExporter";
+var agent:NotesAgent = database.getAgent(agentName);
+	if (agent != null) 
+	{
+	agent.runWithDocumentContext(doc);
+	} 
+	else 
+	{
+	view.postScript("alert('error')");
+	}
+
+}]]></xp:this.action>
+          	</xp:eventHandler>
+          </xp:button>
+        </div>
+      </footer>
+    </div>
+  </div>
+  
+  <div id="export_progress" class="w3-modal" style="display:blck">
+    <div class="w3-modal-content w3-animate-opacity w3-card-4 w3-round" style="width:30%">
+     <xp:div id="modal_body"> 
+      <xp:div styleClass="w3-container" id="progress">
+       <div class="w3-center w3-margin-top" id="loading">
+       <xp:image url="/loading.gif" id="image1" style="height:50px;width:50px" styleClass=""></xp:image>
+       <br />
+       <xp:label value="In Progress" id="label2"></xp:label>
+      
+  </div>
+  <hr />
+  <div class="w3-container">
+     <xp:label value="Exported:" id="label3" styleClass="w3-small"></xp:label>
+   <b><label id="exporting_view" class="w3-small"></label></b>
+       <div class="w3-light-grey w3-round-xlarge">
+    <div class="w3-container w3-blue w3-round-xlarge" id="progress_bar" style="width:0%">0%</div>
+       </div>
+       
+            <xp:label value="Exported" id="label4" styleClass="w3-small" style="margin-right:5px"></xp:label>
+   <label id="view_num" class="w3-small" style="margin-right:5px">0</label>
+        <xp:label value="of" id="label6" styleClass="w3-small" style="margin-right:5px"></xp:label>
+   <label id="total_num" class="w3-small">0</label>
+</div>
+
+      </xp:div>
+
+      <xp:div id="error_div" styleClass="w3-container"
+      	rendered="false">
+      	<div class="w3-panel w3-pale-red w3-border w3-round">
+      		<b>
+      			<i class="fa fa-exclamation-circle fa-fw"></i>
+      			ERROR:
+      		</b>
+      		<xp:label value="" id="error"></xp:label>
+      	</div>
+      </xp:div>
+   <xp:div id="href" styleClass="w3-container explore" style="display:none"
+      	>
+      	<div class="w3-panel w3-pale-green w3-border w3-round">
+      		<ul class="w3-ul">
+      	<li>
+      		
+      		<i class="w3-text-grey">Copy and Paste the Link to new Tab - </i></li>
+      	<li style="overflow-wrap: break-word;"><b><label id="exported_link" style="display:none"></label></b>
+      	<textarea value="" id="exported_link_input"  rows="1" class="w3-small w3-input w3-border w3-border-blue w3-round w3-margin-bottom" readonly='true' />
+      	
+      	<div class="tooltip" style="width:100%">
+<button onclick="copyToClipboard('exported_link_input')" onmouseout="outFunc()" type="button" class="w3-tiny w3-border w3-border-blue w3-round w3-button w3-right"><i class="fa fa-copy fa-fw fa-lg"></i>
+  <div class="tooltiptext w3-right" style="overflow-wrap: break-word" id="myTooltip">Copy to clipboard</div>
+  <b>Copy path </b>
+  </button>
+</div>
+      	
+      	</li>
+      	</ul>
+      		
+      		<xp:label value="" id="label8"></xp:label>
+      	</div>
+      </xp:div>
+      <footer class="w3-container w3-border-top">
+        	<a href="" id="exported_db_link" class="w3-button w3-orange w3-round w3-right explore w3-animate-left w3-margin-top">Open Exported Dbs</a>
+          <xp:button value="Done" id="button4" styleClass="w3-button w3-blue w3-round  w3-right w3-margin"><i class="fa fa-check fa-fw"></i>
+          	<xp:eventHandler event="onclick" submit="false">
+          		<xp:this.script><![CDATA[location.reload();]]></xp:this.script>
+
+          	</xp:eventHandler></xp:button>
+      </footer>
+        
+     <xp:div id="report" styleClass="w3-container w3-border-top w3-theme-l3 w3-center">
+    <b>Export-Report</b>
+     <table class="w3-table w3-small  w3-bordered w3-round  w3-card-4 w3-white w3-margin-bottom">
+     	<tr>
+     		<th><b>View-Name</b></th>
+     		<th><b>Remark</b></th>
+     	</tr>
+     	<xp:repeat id="repeat3" rows="30" first="0" var="export_report"
+				indexVar="a">
+
+				<xp:this.value><![CDATA[#{javascript:
+				var v_arr2:java.util.Vector = new java.util.Vector();
+v_arr2 = viewScope.get("myList");
+return v_arr2;
+				}]]></xp:this.value>
+     	<tr>
+     		<td>
+     			<xp:label id="label5">
+     				<xp:this.value><![CDATA[#{javascript:return @Left(export_report,"|") }]]></xp:this.value>
+     			</xp:label></td>
+     		<td>
+     			<xp:label id="label7"
+     				>
+     				<xp:this.value><![CDATA[#{javascript:return @Right(export_report,"|") }]]></xp:this.value>
+     				<xp:this.styleClass><![CDATA[#{javascript:var report = @Right(export_report,"|") ;
+if(report == "Success"){
+ return "w3-text-green";
+}else{
+ return "w3-text-red";
+}}]]></xp:this.styleClass>
+     			</xp:label>
+     		</td>
+     	</tr>
+     	</xp:repeat>
+     </table>
+     </xp:div> 
+    
+     </xp:div>
+    </div>
+  </div>
+  
+  
+</xp:view>

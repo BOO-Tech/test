@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core">
+<div class='w3-overlay w3-hide-large w3-animate-opacity' onclick='w3_close()' style='cursor:pointer' title='close side menu' id='myOverlay'></div>
+
+<!-- !PAGE CONTENT! -->
+<div class='w3-main' style='margin-left:300px;margin-top:43px;'>
+
+  <!-- Header -->
+  <header class='w3-container w3-padding'>
+    <b><i class='fa fa-upload fa-fw'></i> New Export</b>
+  </header>
+  <div class='w3-container'>
+  
+  <div class="w3-container w3-theme-l5">
+ 
+  <div class="w3-container	">
+  
+  <div class="w3-container w3-padding-large">
+  <h3 class="w3-text-blue"><i class='fa fa-database fa-fw'></i>Database Details for Export</h3><hr />
+  <p>      
+  <label class=""><b>Server-Name</b></label>
+  <xp:inputText id="server_name" styleClass="w3-input w3-border"
+  	defaultValue="#{javascript:return session.getServerName();}"
+  	disabled="true">
+  </xp:inputText>
+  </p>
+  <br />
+  <p>      
+  <label class=""><b>Database Name/Path</b></label>
+   <xp:inputText id="db_name" styleClass="w3-input w3-border">
+  <xp:eventHandler event="onchange" submit="true"
+  	refreshMode="partial" refreshId="full_export_path">
+  </xp:eventHandler></xp:inputText></p>
+  <br />
+<p>      
+  <label class=""><b>Export Path (Destination path to export)</b></label>
+   <xp:inputText id="export_path" styleClass="w3-input w3-border">
+  
+  <xp:eventHandler event="onkeyup" submit="true"
+  	refreshMode="partial" refreshId="full_export_path">
+  </xp:eventHandler></xp:inputText></p>
+  	ExportPath :
+  	<xp:label id="full_export_path"
+  		style="font-weight:bold;font-style:italic;text-decoration:underline;color:rgb(0,95,140)">
+  		<xp:this.value><![CDATA[#{javascript:var v_arr1:java.util.Vector = new java.util.Vector();
+v_arr1 = viewScope.get("myList");
+
+var export_folder = getComponent("export_path").getValue();
+var db_name = getComponent("db_name").getValue();
+if(db_name != null &&  export_folder!=null){
+export_folder = export_folder+"/HtmlExport/";
+ var db_folder_split = db_name.split("/");
+ var db_folder = db_folder_split[db_folder_split.length-1];
+ db_folder = db_folder.toString().replace(".nsf","");
+ if(v_arr1 != null && v_arr1.size() > 0)
+ return export_folder+"/"+db_folder+"/"+v_arr1.get(0).toString().replace(" ","")+".html";
+ else
+  return export_folder+"/"+db_folder
+  }
+ 
+}]]></xp:this.value>
+  	</xp:label>
+  	<br />
+<hr />
+  Note:
+  <ul class="w3-list w3-text-orange">
+  <li> Use one <i class="w3-text-black" style="margin-right:5px;margin-left:5px"><b> single folder </b></i>  for all the database for better data collection.</li>
+    <li> <i class="w3-text-black" style="margin-right:5px;margin-left:5px"><b>"HtmlExport/database_name_folder"</b></i> would be automatically created, Only provide one empty Folder.</li>
+        <li> Example:if path is entered drive "D:" then the exported path will be <i class="w3-text-black" style="margin-right:5px;margin-left:5px"><b>"D:/HtmlExport/database_name_folder".</b></i> </li>
+                <li> Always use the <i class="w3-text-black" style="margin-right:5px;margin-left:5px"><b> same path OR suggested path </b></i>  for all the databases separations will be managed automatically.</li>
+        
+    
+  
+  </ul>
+  
+    <p>
+    
+  <xp:button value="Load Views" id="button1"
+  	styleClass="w3-btn w3-theme w3-right w3-round w3-ripple"><i class=" fa fa-refresh fa-fw"></i>
+  	<xp:eventHandler event="onclick" submit="true"
+  		refreshMode="partial" refreshId="view_list_repeat">
+  		<xp:this.script><![CDATA[document.getElementById('view_list').style.display='block']]></xp:this.script>
+  		<xp:this.action><![CDATA[#{javascript:/*
+var server = getComponent("server_name").getValue();
+var db_name = getComponent("db_name").getValue();
+var v_list:java.util.Vector = java.util.Vector();
+if(server != "" && db_name != ""){
+  var db:NotesDatabase = session.getDatabase(server,db_name);
+    if(db.isOpen()){
+      v_list = db.getViews();
+      return v_list;
+    }else{
+    return v_list.add("Invalid-Database-Info");
+    }
+}else{
+   return v_list.add("isEmptyDBorSERVER");
+}
+*/}]]></xp:this.action>
+  	</xp:eventHandler></xp:button>
+  </p>
+  
+  </div>
+
+</div>
+  
+  </div>
+  
+  
+  </div></div>
+</xp:view>

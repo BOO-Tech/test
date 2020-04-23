@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	
+	<xc:modals></xc:modals>
+
+
+	<div class='w3-bar w3-top w3-theme-d4 w3-large' style='z-index:4'>
+		<button
+			class='w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey'
+			onclick='w3_open();'>
+			<i class='fa fa-bars'></i>
+			 Menu
+		</button>
+		<span class='w3-bar-item w3-right w3-wide'>
+			*BOO Technologies*
+		</span>
+	</div>
+
+	<xc:leftNav></xc:leftNav>
+	<xc:content></xc:content>
+	<xp:eventHandler event="onClientLoad" submit="true"
+		refreshMode="norefresh">
+		<xp:this.action><![CDATA[#{javascript:var v:java.util.Vector = new java.util.Vector();
+
+viewScope.put("myList",v)
+}]]></xp:this.action>
+	</xp:eventHandler></xp:view>
